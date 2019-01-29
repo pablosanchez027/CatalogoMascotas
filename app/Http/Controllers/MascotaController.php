@@ -74,7 +74,14 @@ class MascotaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $especies = Especie::all();
+        $mascota = Mascota::find($id);
+
+        $argumentos = array();
+        $argumentos['especies'] = $especies;
+        $argumentos['mascota'] = $mascota;
+
+        return view('mascotas.edit', $argumentos);
     }
 
     /**
