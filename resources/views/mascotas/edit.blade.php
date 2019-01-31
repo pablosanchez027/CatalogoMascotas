@@ -27,7 +27,7 @@
         <input type="text" name="precio" placeholder="Precio de la mascota" value="{{$mascota->Precio}}" required>
         <br/>
         <label>Fecha de nacimiento</label>
-        <input type="date" name="nacimiento" value="{{$mascota->Nacimiento}}" required>
+        <input type="date" name="nacimiento" value="{{$mascota->Nacimiento}}" value="{{$mascota->Nacimiento}"  required>
         
         <br/>
         <button type="submit">Actualizar nueva mascota </button>

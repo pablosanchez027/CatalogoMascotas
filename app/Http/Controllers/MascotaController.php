@@ -93,7 +93,15 @@ class MascotaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mascota = Mascota::find($id);
+        $mascota->id_especie = $request->input('especie');
+        $mascota->nombre = $request->input('nombre');
+        $mascota->precio= $request->input('precio');
+        $mascota->nacimiento= $request->input('nacimiento');
+        //Guardar los cambios
+        $mascota->save();
+
+        return redirect()->route('mascotas.edit',$id);
     }
 
     /**
@@ -104,6 +112,9 @@ class MascotaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mascota = Mascota::find($id);
+        $mascota->delete();
+
+        return redirect()->route('mascotas.index');
     }
 }
