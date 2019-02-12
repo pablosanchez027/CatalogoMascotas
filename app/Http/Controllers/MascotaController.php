@@ -116,6 +116,6 @@ class MascotaController extends Controller
         if ($mascota->delete()) {
             return redirect()->route('mascotas.index')->with('exito', 'Mascota eliminada');
         }
-        return redirect()->route('mascotas.index')->with('error', 'No se pudo eliminar mascota')
+        return redirect()->route('mascotas.index')->with('error', 'No se pudo eliminar mascota');
     }
 }

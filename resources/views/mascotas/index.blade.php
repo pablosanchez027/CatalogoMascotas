@@ -12,19 +12,25 @@
                     <a href="{{route('mascotas.create')}}">
                         <button class="btn btn-primary">Agregar mascota</button>
                     </a>
+                    @if(Session::has('exito'))
                     <div class="alert alert-success alert-dismissible" style="margin-top:20px;">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <h4><i class="icon fa fa-check"></i> Alert!</h4>
                         Success alert preview. This alert is dismissable.
                     </div>
+                    @endif
+
+                    @if(Session::has('error'))
                     <div class="alert alert-danger alert-dismissible" style="margin-top:20px;">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <h4><i class="icon fa fa-ban"></i> Alert!</h4>
                         Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire
                         soul, like these sweet mornings of spring which I enjoy with my whole heart.
                     </div>
+                    @endif
+
                     <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" id="tablaMascotas">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -82,4 +88,16 @@
             </div>
         </div>
     </div>
+    @endsection
+
+    @section('scripts')
+    <!-- DataTables -->
+    <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+            ('#tablaMascotas').DataTable();
+        });
+    </script>
     @endsection
