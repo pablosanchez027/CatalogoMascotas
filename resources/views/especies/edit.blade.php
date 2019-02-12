@@ -9,14 +9,13 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <form action="{{route('especies.update', $especie->ID)}}" method="post">
+    <form action="{{route('especies.update',$especie->ID)}}" method="post">
     @csrf
     @method('PUT')
-        <label>Especie</label>
+        <label>Nombre</label>
         <input type="text" name="nombre" placeholder="Nombre de la especie" value="{{$especie->Nombre}}" required>
- 
         <br/>
-        <button type="submit">Actualizar nueva especie </button>
+        <button type="submit">Actualizar especie </button>
     </form>
 </body>
 </html>

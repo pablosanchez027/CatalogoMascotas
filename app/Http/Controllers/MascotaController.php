@@ -80,8 +80,7 @@ class MascotaController extends Controller
         $argumentos = array();
         $argumentos['especies'] = $especies;
         $argumentos['mascota'] = $mascota;
-
-        return view('mascotas.edit', $argumentos);
+        return view('mascotas.edit',$argumentos);
     }
 
     /**
@@ -94,15 +93,16 @@ class MascotaController extends Controller
     public function update(Request $request, $id)
     {
         $mascota = Mascota::find($id);
-        $mascota->id_especie = $request->input('especie');
-        $mascota->nombre = $request->input('nombre');
-        $mascota->precio= $request->input('precio');
-        $mascota->nacimiento= $request->input('nacimiento');
-        //Guardar los cambios
-        $mascota->save();
+        $mascota->ID_especie = $request->input('especie');
+        $mascota->Nombre = $request->input('nombre');
+        $mascota->Precio = $request->input('precio');
+        $mascota->Nacimiento = $request->input('nacimiento');
 
+        //Guardar cambios
+        $mascota->save();
         return redirect()->route('mascotas.edit',$id);
     }
+ 
 
     /**
      * Remove the specified resource from storage.
@@ -113,8 +113,9 @@ class MascotaController extends Controller
     public function destroy($id)
     {
         $mascota = Mascota::find($id);
-        $mascota->delete();
-
-        return redirect()->route('mascotas.index');
+        if ($mascota->delete()) {
+            return redirect()->route('mascotas.index')->with('exito', 'Mascota eliminada');
+        }
+        return redirect()->route('mascotas.index')->with('error', 'No se pudo eliminar mascota')
     }
 }

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mascota;
 use App\Especie;
 
 class EspecieController extends Controller
 {
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -28,10 +29,12 @@ class EspecieController extends Controller
      */
     public function create()
     {
+        $especies = Especie::all();
+
         $argumentos = array();
+        $argumentos['especies'] = $especies;
         return view('especies.create', $argumentos);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -68,14 +71,12 @@ class EspecieController extends Controller
      */
     public function edit($id)
     {
-        $especies = Especie::all();
         $especie = Especie::find($id);
 
         $argumentos = array();
-        $argumentos['especies'] = $especies;
-        $argumentos['especie'] = $especie;
 
-        return view('especies.edit', $argumentos);
+        $argumentos['especie'] = $especie;
+        return view('especies.edit',$argumentos);
     }
 
     /**
@@ -88,12 +89,13 @@ class EspecieController extends Controller
     public function update(Request $request, $id)
     {
         $especie = Especie::find($id);
-        $especie->nombre = $request->input('nombre');
-        //Guardar los cambios
-        $especie->save();
+        $especie->Nombre = $request->input('nombre');
 
+        //Guardar cambios
+        $especie->save();
         return redirect()->route('especies.edit',$id);
     }
+ 
 
     /**
      * Remove the specified resource from storage.
@@ -105,7 +107,7 @@ class EspecieController extends Controller
     {
         $especie = Especie::find($id);
         $especie->delete();
-
         return redirect()->route('especies.index');
+
     }
 }
