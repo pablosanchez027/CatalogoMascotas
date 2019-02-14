@@ -20,3 +20,7 @@ Route::get('starter','StarterController@starter')->name('starter');
 
 Route::resource('especies', 'EspecieController');
 Route::get('starter2','Starter2Controller@starter2')->name('starter2');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
