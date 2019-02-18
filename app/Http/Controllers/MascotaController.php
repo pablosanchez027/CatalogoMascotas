@@ -57,8 +57,10 @@ class MascotaController extends Controller
         $nuevaMascota->Precio = $request->input('precio');
         $nuevaMascota->Nacimiento = $request->input('nacimiento');
         
-        $nuevaMascota->save();
-        return redirect()->route('mascotas.index');
+        if ($nuevaMascota->save()) {
+            return redirect()->route('mascotas.index')->with('exito', 'Mascota eliminada');
+        }
+        return redirect()->route('mascotas.index')->with('error', 'No se pudo eliminar mascota');  
     }
 
     /**
@@ -105,8 +107,11 @@ class MascotaController extends Controller
         $mascota->Nacimiento = $request->input('nacimiento');
 
         //Guardar cambios
-        $mascota->save();
-        return redirect()->route('mascotas.edit',$id);
+        if ($mascota->save()) {
+            return redirect()->route('mascotas.index',$id)->with('exito', 'Mascota eliminada');
+        }
+        return redirect()->route('mascotas.index',$id)->with('error', 'No se pudo eliminar mascota');     
+        
     }
  
 

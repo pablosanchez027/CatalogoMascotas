@@ -1,35 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Editar mascota</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
-<body>
-    <form action="{{route('mascotas.update',$mascota->ID)}}" method="post">
+@extends('layouts.default')
+@section('titulo_pagina','Mascotas | Lista de mascotas')
+@section('titulo','Mascotas')
+@section('subtitulo','Lista de mascotas')
+@section('contenido')
+    <form action="{{route('mascotas.update',$mascota->ID)}}" method="post" role="form">
     @csrf
     @method('PUT')
-        <label>Especie</label>
-        <select name="especie" required>
+        <div class="form-group">
+            <label>Especie</label>
+            <select name="especie" class="form-control" required>
             <option disabled value="">Elige una especie</option>
             @foreach($especies as $especie)
                 <option value="{{$especie->ID}}" @if($especie->ID == $mascota->ID_especie) selected @endif >{{$especie->Nombre}}</option>
             @endforeach
         </select>
-        <br/>
-        <label>Nombre</label>
-        <input type="text" name="nombre" placeholder="Nombre de la mascota" value="{{$mascota->Nombre}}" required>
-        <br/>
-        <label>Precio</label>
-        <input type="text" name="precio" placeholder="Precio de la mascota" value="{{$mascota->Precio}}" required>
-        <br/>
-        <label>Fecha de nacimiento</label>
-        <input type="date" name="nacimiento" value="{{$mascota->Nacimiento}}" required>
-        <br/>
-        <button type="submit">Actualizar mascota </button>
+        </div>
+
+        <div class="form-group">
+            <label>Nombre</label>
+            <input class="form-control" type="text" name="nombre" placeholder="Nombre de la mascota" value="{{$mascota->Nombre}}" required>
+        </div>
+        <div class="form-group">
+            <label>Precio</label>
+            <input class="form-control" type="text" name="precio" placeholder="Precio de la mascota" value="{{$mascota->Precio}}" required>
+        </div>
+        <div class="form-group">
+            <label>Fecha de nacimiento</label>
+            <input class="form-control" type="date" name="nacimiento" value="{{$mascota->Nacimiento}}" required>
+        </div>
+        <button type="submit" class="btn btn-default ">Actualizar mascota </button>
     </form>
-</body>
-</html>
+@endsection
