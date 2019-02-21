@@ -1,7 +1,7 @@
 @extends('layouts.default')
-@section('titulo_pagina','Mascotas | Lista de mascotas')
+@section('titulo_pagina','Mascotas | Agregar Mascota')
 @section('titulo','Mascotas')
-@section('subtitulo','Lista de mascotas')
+@section('subtitulo','Agregar mascota')
 @section('contenido')
     <form action="{{route('mascotas.store')}}" method="post" role="form">
     @csrf

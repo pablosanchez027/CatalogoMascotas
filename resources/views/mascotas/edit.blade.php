@@ -1,7 +1,7 @@
 @extends('layouts.default')
-@section('titulo_pagina','Mascotas | Lista de mascotas')
+@section('titulo_pagina','Mascotas | Edición de mascotas')
 @section('titulo','Mascotas')
-@section('subtitulo','Lista de mascotas')
+@section('subtitulo','Ediciñón de mascotas')
 @section('contenido')
     <form action="{{route('mascotas.update',$mascota->ID)}}" method="post" role="form">
     @csrf
