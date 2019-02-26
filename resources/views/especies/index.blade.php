@@ -1,5 +1,8 @@
-@extends('layouts.especie')
-    @section('contenido2')
+@extends('layouts.default')
+@section('titulo_pagina','Mascotas | Lista de mascotas')
+@section('titulo','Mascotas')
+@section('subtitulo','Lista de mascotas')
+@section('contenido')
     <a href="{{route('especies.create')}}">
         <button class="btn btn-primary">Agregar especie</button>
     </a>
@@ -31,4 +34,16 @@
         </tbody>
     </table>
     </div>
+    @endsection
+
+    @section('scripts')
+    <!-- DataTables -->
+    <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    
+    <script>
+        $(function () {
+            ('#tablaMascotas').DataTable();
+        });
+    </script>
     @endsection

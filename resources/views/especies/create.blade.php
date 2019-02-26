@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Crear especies</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
-<body>
+@extends('layouts.default')
+@section('titulo_pagina','Especies | Agregar Especie')
+@section('titulo','Especies')
+@section('subtitulo','Agregar Especie')
+@section('contenido')
     <form action="{{route('especies.store')}}" method="post">
     @csrf
         <label>Nombre</label>
-        <input type="text" name="nombre" placeholder="Nombre de la especie" required>
+        <input type="text" class="form-control" name="nombre" placeholder="Nombre de la especie" required>
         <br/>
-        <button type="submit">Crear nueva especie</button>
+        <button type="submit" class="btn btn-default">Crear nueva especie</button>
     </form>
-</body>
-</html>
+@endsection

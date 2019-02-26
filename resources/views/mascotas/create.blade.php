@@ -6,7 +6,7 @@
     <form action="{{route('mascotas.store')}}" method="post" role="form">
     @csrf
         <div class="form-group">
-            <label>Especie</label>
+            <label>Especie</label>  
             <select class="form-control" name="especie" required>
                 <option disabled selected value="">Elige una especie</option>
                 @foreach($especies as $especie)
