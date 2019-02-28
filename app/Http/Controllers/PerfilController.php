@@ -30,10 +30,9 @@ class PerfilController extends Controller
             $usuario->name = $request->input('nombre');
             if($request->hasFile('foto')) {
                 $archivo = $request->file('foto');
-                $nombreArchivo = 'p' . $usuario->id . '.' . date("Y-m-d") . '.';
-                //$archivo->getClientoriginalName()
-
+                $nombreArchivo = 'user' . $usuario->id . '_' . date("Y-m-d") . '_' . $archivo->getClientoriginalName();
                 $request->file('foto')->storeAs('public', $nombreArchivo);
+                $usuario->foto = $nombreArchivo;
             }
 
 

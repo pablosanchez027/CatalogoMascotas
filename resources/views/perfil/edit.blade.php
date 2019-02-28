@@ -41,8 +41,8 @@
                         <input name="foto" class="form-control" type="file">
                     </div>
                     <div class="form-group">
-                        @if($usuario->foto)
-                        <img src="{{ $usuario->foto }}" style="width: 400px; height: auto;" class="img-responsive">
+                        @if($usuario->foto) 
+                        <img src="/storage/{{ $usuario->foto }}" style="width: 400px; height: auto;" class="img-responsive">
                         @endif
                     </div>
                     <div class="form-group">
