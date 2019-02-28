@@ -10,35 +10,53 @@
                 <h3 class="box-title">Perfil de Usuario</h3>
             </div>
             <div class="box-body">
-                Formulario
-                <div class="form-group">
-                    <label>Nombre</label>
-                    <input class="form-control" value="{{ $usuario->name }}" type="text">
-                </div>
-                <div class="form-group">
-                    <label>Correo</label>
-                    <input class="form-control" type="email" value="{{ $usuario->email }}" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Foto</label>
-                    <input class="form-control" type="file">
-                </div>
-                <div class="form-group">
-                    @if($usuario->foto)
-                    <img src="{{ $usuario->foto }}" style="width: 400px; height: auto;" class="img-responsive">
+                    @if(Session::has('exito'))
+                    <div class="alert alert-success alert-dismissible" style="margin-top:20px;">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-check"></i> Éxito!</h4>
+                        {{ Session::get('exito') }}
+                    </div>
                     @endif
-                </div>
-                <div class="form-group">
-                    <label>Contraseña</label>
-                    <input class="form-control" type="password">
-                </div>
-                <div class="form-group">
-                    <label>Confirmar Contraseña</label>
-                    <input class="form-control" type="password">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                </div>
+    
+                    @if(Session::has('error'))
+                    <div class="alert alert-danger alert-dismissible" style="margin-top:20px;">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                        {{ Session::get('error') }}
+                    </div>
+                    @endif
+                <form method="POST" action="{{ route('perfil.update', $usuario->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input name="nombre" class="form-control" value="{{ $usuario->name }}" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Correo</label>
+                        <input class="form-control" type="email" value="{{ $usuario->email }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Foto</label>
+                        <input name="foto" class="form-control" type="file">
+                    </div>
+                    <div class="form-group">
+                        @if($usuario->foto)
+                        <img src="{{ $usuario->foto }}" style="width: 400px; height: auto;" class="img-responsive">
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input name="password" class="form-control" type="password">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirmar Contraseña</label>
+                        <input class="form-control" type="password">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -28,6 +28,7 @@ Route::resource('mascotas', 'MascotaController');
 Route::resource('especies', 'EspecieController');
 
 Route::get('/perfil','PerfilController@edit')->name('perfil.edit');
+Route::put('/perfil/{id}','PerfilController@update')->name('perfil.update');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 

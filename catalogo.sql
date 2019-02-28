@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 21, 2019 at 01:03 AM
+-- Generation Time: Feb 28, 2019 at 01:56 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -105,6 +105,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -114,8 +115,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Pablo', 'pablo@pablo.pablo', NULL, '$2y$10$MOzOf6y9hl/Fvn.jOnmynuLKz9j9mprmwU/kitWcHJOD1ZwzoPH7e', 'wZTbN3VS21NPmQaYeotrt384PXETqVZMTab7qmSVhzxDorEu1L7goeRPLQeG', '2019-02-21 07:38:55', '2019-02-21 07:38:55');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `foto`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Pablo Sánchez', 'pablo@pablo.pablo', NULL, '$2y$10$MOzOf6y9hl/Fvn.jOnmynuLKz9j9mprmwU/kitWcHJOD1ZwzoPH7e', NULL, 'wZTbN3VS21NPmQaYeotrt384PXETqVZMTab7qmSVhzxDorEu1L7goeRPLQeG', '2019-02-21 07:38:55', '2019-02-28 08:28:09');
 
 --
 -- Indexes for dumped tables
