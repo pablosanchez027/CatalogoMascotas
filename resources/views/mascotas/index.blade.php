@@ -78,11 +78,6 @@
                                             </div>
                                             <!-- /.modal-dialog -->
                                         </div>
-                                        <!--<form method="POST" action="{{route('mascotas.destroy',$mascota->ID)}}">
-                                    @csrf
-                                    @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-fw fa-trash"></i>Borrar</button>
-                                    </form>-->
                                     </td>
                                 </tr>
                                 @endforeach
