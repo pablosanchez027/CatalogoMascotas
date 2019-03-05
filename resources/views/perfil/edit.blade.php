@@ -10,22 +10,23 @@
                 <h3 class="box-title">Perfil de Usuario</h3>
             </div>
             <div class="box-body">
-                    @if(Session::has('exito'))
-                    <div class="alert alert-success alert-dismissible" style="margin-top:20px;">
+                @if(Session::has('exito'))
+                <div class="alert alert-success alert-dismissible" style="margin-top:20px;">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h4><i class="icon fa fa-check"></i> Éxito!</h4>
-                        {{ Session::get('exito') }}
-                    </div>
-                    @endif
-    
-                    @if(Session::has('error'))
-                    <div class="alert alert-danger alert-dismissible" style="margin-top:20px;">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                        {{ Session::get('error') }}
-                    </div>
-                    @endif
-                <form method="POST" action="{{ route('perfil.update', $usuario->id) }}" enctype="multipart/form-data">
+                    <h4><i class="icon fa fa-check"></i> Éxito!</h4>
+                    {{ Session::get('exito') }}
+                </div>
+                @endif
+
+                @if(Session::has('error'))
+                <div class="alert alert-danger alert-dismissible" style="margin-top:20px;">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                    {{ Session::get('error') }}
+                </div>
+                @endif
+                <form method="POST" action="{{ route('perfil.update', $usuario->id) }}" enctype="multipart/form-data"
+                    id="frmActualizarPerfil">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
@@ -41,20 +42,25 @@
                         <input name="foto" class="form-control" type="file">
                     </div>
                     <div class="form-group">
-                        @if($usuario->foto) 
-                        <img src="/storage/{{ $usuario->foto }}" style="width: 400px; height: auto;" class="img-responsive">
+                        @if($usuario->foto)
+                        <img src="/storage/{{ $usuario->foto }}" style="width: 400px; height: auto;"
+                            class="img-responsive">
                         @endif
                     </div>
-                    <div class="form-group">
+                    <div class="form-group grupo-password">
                         <label>Contraseña</label>
-                        <input name="password" class="form-control" type="password">
+                        <input name="password" class="form-control input-password" type="password"
+                            id="txtPasswordInput">
+
+                    </div>
+                    <div class="form-group grupo-password">
+                        <label class="control-label">Confirmar Contraseña</label>
+                        <input class="form-control input-password" type="password" id="txtPasswordConfirm">
+                        <span class="help-block" id="passwordError"><i class="fa fa-times-circle-o"></i> Las contraseñas
+                            no coinciden</span>
                     </div>
                     <div class="form-group">
-                        <label>Confirmar Contraseña</label>
-                        <input class="form-control" type="password">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        <button type="button" class="btn btn-primary" id="btnActualizar">Guardar Cambios</button>
                     </div>
                 </form>
             </div>
@@ -62,4 +68,42 @@
     </div>
 </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    function doClickActualizar(event) {
+        if ($("#txtPasswordInput").val() == $("#txtPasswordConfirm").val()) {
+            //Envío el formulario
+            $("#frmActualizarPerfil").submit();
+        } else {
+            //Muestro errores
+            $("#passwordError").show();
+            $(".grupo-password").addClass("has-error");
+        }
+    }
+
+    //Real time Detection
+    $(".input-password").blur(function () {
+        if ($("#txtPasswordInput").val() == $("#txtPasswordConfirm").val()) {
+            $("#passwordError").hide();
+            $(".grupo-password").removeClass("has-error");
+        }
+        else {
+            $("#passwordError").show();
+            $(".grupo-password").addClass("has-error");
+        }
+    });
+
+    //Hide error message during editing
+    $(".input-password").focus(function () {
+        $("#passwordError").hide();
+        $(".grupo-password").removeClass("has-error");
+    });
+
+    $(function () {
+        $("#passwordError").hide();
+        $("#btnActualizar").click(doClickActualizar);
+    });
+</script>
 @endsection
