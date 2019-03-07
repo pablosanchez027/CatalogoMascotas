@@ -60,7 +60,7 @@
                             no coinciden</span>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-primary" id="btnActualizar">Guardar Cambios</button>
+                        <button type="button" class="btn btn-primary" id="btnActualizar" >Guardar Cambios</button>
                     </div>
                 </form>
             </div>
@@ -72,6 +72,7 @@
 
 @section('scripts')
 <script>
+    //Acción realizada al picar el botón
     function doClickActualizar(event) {
         if ($("#txtPasswordInput").val() == $("#txtPasswordConfirm").val()) {
             //Envío el formulario

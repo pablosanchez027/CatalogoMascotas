@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 28, 2019 at 07:49 PM
+-- Generation Time: Mar 07, 2019 at 12:54 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -34,6 +34,34 @@ INSERT INTO `especies` (`ID`, `Nombre`) VALUES
 (2, 'Perro'),
 (3, 'Hamster'),
 (4, 'Perico');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `estados`
+--
+
+CREATE TABLE `estados` (
+  `id` int(10) NOT NULL,
+  `id_pais` int(10) NOT NULL,
+  `nombre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `estados`
+--
+
+INSERT INTO `estados` (`id`, `id_pais`, `nombre`) VALUES
+(1, 1, 'Sonora'),
+(2, 1, 'Nuevo León'),
+(3, 1, 'Chihuahua'),
+(4, 1, 'Durango'),
+(5, 1, 'Jalisco'),
+(6, 2, 'Berlin'),
+(7, 2, 'Bayern'),
+(8, 2, 'Baden-Württemberg'),
+(9, 2, 'Brandenburg'),
+(10, 2, 'Hamburg');
 
 -- --------------------------------------------------------
 
@@ -84,6 +112,25 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `paises`
+--
+
+CREATE TABLE `paises` (
+  `id` int(10) NOT NULL,
+  `nombre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `paises`
+--
+
+INSERT INTO `paises` (`id`, `nombre`) VALUES
+(1, 'México'),
+(2, 'Alemania');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `password_resets`
 --
 
@@ -116,7 +163,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `foto`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Pablo Sánchez', 'pablo@pablo.pablo', NULL, '$2y$10$MOzOf6y9hl/Fvn.jOnmynuLKz9j9mprmwU/kitWcHJOD1ZwzoPH7e', 'user1_2019-02-28_rootfox.jpg', 'wZTbN3VS21NPmQaYeotrt384PXETqVZMTab7qmSVhzxDorEu1L7goeRPLQeG', '2019-02-21 07:38:55', '2019-03-01 02:35:06');
+(1, 'Pablo Sánchez', 'pablo@pablo.pablo', NULL, '$2y$10$IiLu2W4ryGcDuaMGKSMjEOzqDrgeFilyD/YJQWHFbCElr9paOMNfq', 'user1_2019-02-28_rootfox.jpg', 'rWbVaRv4HnWH5q39UeEgmYZHlMAJ5NrELy0DU1f8GyCR8W34dxRHRtmJrTiK', '2019-02-21 07:38:55', '2019-03-07 07:38:57');
 
 --
 -- Indexes for dumped tables
@@ -129,6 +176,13 @@ ALTER TABLE `especies`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `estados`
+--
+ALTER TABLE `estados`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pais` (`id_pais`);
+
+--
 -- Indexes for table `mascotas`
 --
 ALTER TABLE `mascotas`
@@ -139,6 +193,12 @@ ALTER TABLE `mascotas`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `paises`
+--
+ALTER TABLE `paises`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -165,6 +225,12 @@ ALTER TABLE `especies`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `estados`
+--
+ALTER TABLE `estados`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `mascotas`
 --
 ALTER TABLE `mascotas`
@@ -177,6 +243,12 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `paises`
+--
+ALTER TABLE `paises`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -185,6 +257,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `estados`
+--
+ALTER TABLE `estados`
+  ADD CONSTRAINT `estados_ibfk_1` FOREIGN KEY (`id_pais`) REFERENCES `paises` (`id`);
 
 --
 -- Constraints for table `mascotas`
