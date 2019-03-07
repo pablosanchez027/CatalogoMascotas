@@ -18,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //localhost:8000/api/estados/1
-Route::get('/estados({pais}','ServiciosControoler@estados')->name('api.estados.lista');
+Route::get('/estados/{pais}','ServiciosController@estados')->name('api.estados.lista');
