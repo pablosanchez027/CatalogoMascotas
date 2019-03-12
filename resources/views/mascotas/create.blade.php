@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label>País</label>
-                        <select class="form-control" type="date" name="pais" id="selectPais" required>
+                        <select class="form-control" name="pais" id="selectPais" required>
                             <option disabled selected value="">Elige un país</option>
                             @foreach($paises as $pais)
                             <option value="{{$pais->id}}">{{$pais->nombre}}</option>
@@ -44,11 +44,8 @@
                     </div>
                     <div class="form-group">
                         <label>Estado</label>
-                        <select class="form-control" type="date" name="estado" id="selectEstado" required>
+                        <select class="form-control" name="estado" id="selectEstado" required>
                             <option disabled selected value="">Elige un estado</option>
-                            @foreach($especies as $especie)
-                            <option value="{{$especie->ID}}">{{$especie->Nombre}}</option>
-                            @endforeach
                         </select>
                     </div>
                     <button type="submit" class="btn btn-default">Crear nueva mascota </button>
@@ -62,8 +59,13 @@
 @section('scripts')
 <script>
     function doChangePais(event) {
-        $.get("/api/estados/" + $("#selectPais").val(), function (data) {
-            console.log(data);
+        $.get("/api/estados/" + $("#selectPais").val(),
+        function (data) {
+            $("#selectEstado").empty();
+            $("#selectEstado").append('<option selected disabled value="">Elige un estado</option>');
+            for(var i=0; i<data.length; i++){
+                $("#selectEstado").append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
+            }
         });
     }
 
